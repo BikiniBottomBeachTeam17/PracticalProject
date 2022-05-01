@@ -112,7 +112,11 @@ public class GetDataController {
         }
         return Result.success("删除失败");
     }
-
+    @GetMapping("/search")
+    public Result search(@RequestParam String name){
+        List<Product> list=datasMapper.getProductByName(name);
+        return Result.success(list);
+    }
 
 
 
