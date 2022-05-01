@@ -40,5 +40,16 @@ public interface DatasMapper extends BaseMapper<Datas> {
             "WHERE new.time=datas.querytime\n" +
             "AND items.uuid='${uuid}'")
     Product getProductInfo(@Param("uuid")String uuid);
-
+    @Select("SELECT items.*,datas.price,datas.querytime\n" +
+            "FROM items LEFT JOIN datas\n" +
+            "ON items.uuid=datas.uuid\n" +
+            "RIGHT JOIN (\n" +
+            "SELECT items.uuid,MAX(datas.querytime) time \n" +
+            "FROM items Left JOIN datas \n" +
+            "ON datas.uuid=items.uuid \n" +
+            "GROUP BY items.uuid) new\n" +
+            "ON items.uuid=new.uuid\n" +
+            "WHERE new.time=datas.querytime\n" +
+            "AND items.name like '%${name}%'")
+    List<Product> getProductByName(@Param("name")String name);
 }
