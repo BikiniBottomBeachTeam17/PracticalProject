@@ -104,6 +104,14 @@ public class GetDataController {
         List<Product> list=datasMapper.getProduct();
         return Result.success(list);
     }
+    @PostMapping("/delete")
+    public Result deleteData(@RequestBody String uuid){
+        if (datasMapper.delete(Wrappers.<Datas>lambdaQuery().eq(Datas::getUuid,uuid))!=0||
+                itemsMapper.delete(Wrappers.<Items>lambdaQuery().eq(Items::getUuid,uuid))!=0){
+            return Result.success("删除成功");
+        }
+        return Result.success("删除失败");
+    }
 
 
 
