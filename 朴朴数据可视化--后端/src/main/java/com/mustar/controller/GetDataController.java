@@ -71,5 +71,20 @@ public class GetDataController {
             }
         }
     }
+    @PostMapping("/save")
+    public Result saveOneData(@RequestBody Datas datas){
+        Datas data=new Datas();
+        data.setUuid(datas.getUuid());
+        data.setPrice(datas.getPrice());
+        data.setQuerytime(datas.getQuerytime());
+        if (datasMapper.insert(data)!=0){
+            return Result.success("数据存储成功");
+        }
+        return Result.error(-1,"数据存储失败");
+    }
+
+
+
+
    
 }
