@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "l-f2": "/uni_modules/lime-f2/components/l-f2/l-f2",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "u-toast": "/uni_modules/uview-ui/components/u-toast/u-toast"
+  }
+}
