@@ -87,7 +87,7 @@ public class GetDataController {
         List<Datas> dataList = datasMapper.selectList(Wrappers.<Datas>lambdaQuery().eq(Datas::getUuid, uuid));
         return Result.success(dataList);
     }
-@GetMapping("/getInfo")
+    @GetMapping("/getInfo")
     public Result getInfo(@RequestParam String uuid){
         Items items = itemsMapper.selectOne(Wrappers.<Items>lambdaQuery().eq(Items::getUuid, uuid));
         Product productInfo = datasMapper.getProductInfo(uuid);
@@ -98,6 +98,11 @@ public class GetDataController {
                 .put("img", items.getImg())
                 .put("price", productInfo.getPrice())
                 .map());
+    }
+    @GetMapping("/getList")
+    public Result getListData(){
+        List<Product> list=datasMapper.getProduct();
+        return Result.success(list);
     }
 
 
