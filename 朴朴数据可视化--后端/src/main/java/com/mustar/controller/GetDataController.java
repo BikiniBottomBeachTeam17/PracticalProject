@@ -82,6 +82,15 @@ public class GetDataController {
         }
         return Result.error(-1,"数据存储失败");
     }
+    @GetMapping("/getPrice")
+    public Result getOneData(@RequestParam String uuid){
+        List<Datas> dataList = datasMapper.selectList(Wrappers.<Datas>lambdaQuery().eq(Datas::getUuid, uuid));
+        return Result.success(dataList);
+    }
+
+
+
+
 
 
 
